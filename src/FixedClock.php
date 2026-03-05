@@ -18,6 +18,7 @@ namespace TomasChochola\Psr\Clock;
 use DateTimeImmutable;
 use Override;
 use Psr\Clock\ClockInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * @no-named-arguments
@@ -29,6 +30,11 @@ readonly class FixedClock implements ClockInterface
     public function __construct(DateTimeImmutable $now = new DateTimeImmutable('2000-01-01T00:00:00Z'))
     {
         $this->now = $now;
+    }
+
+    public static function provide(ContainerInterface $container): ClockInterface
+    {
+        return new self();
     }
 
     #[Override]

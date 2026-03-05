@@ -18,12 +18,18 @@ namespace TomasChochola\Psr\Clock;
 use DateTimeImmutable;
 use Override;
 use Psr\Clock\ClockInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * @no-named-arguments
  */
 readonly class NowClock implements ClockInterface
 {
+    public static function provide(ContainerInterface $container): ClockInterface
+    {
+        return new self();
+    }
+
     #[Override]
     public function now(): DateTimeImmutable
     {
