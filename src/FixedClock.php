@@ -32,7 +32,7 @@ readonly class FixedClock implements ClockInterface
         $this->now = $now;
     }
 
-    public static function provide(ContainerInterface $container): ClockInterface
+    public static function unload(ContainerInterface $container): self
     {
         return new self();
     }

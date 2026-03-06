@@ -25,7 +25,7 @@ use Psr\Container\ContainerInterface;
  */
 readonly class NowClock implements ClockInterface
 {
-    public static function provide(ContainerInterface $container): ClockInterface
+    public static function unload(ContainerInterface $container): self
     {
         return new self();
     }
