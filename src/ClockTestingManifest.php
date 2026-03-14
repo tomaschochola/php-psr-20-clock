@@ -15,21 +15,27 @@ declare(strict_types=1);
 
 namespace TomasChochola\Psr\Clock;
 
-use DateTimeImmutable;
-use DateTimeZone;
+use IteratorAggregate;
 use NoDiscard;
 use Override;
 use Psr\Clock\ClockInterface;
+use Traversable;
 
 /**
  * @no-named-arguments
+ *
+ * @implements IteratorAggregate<mixed, mixed>
  */
-readonly class NowClock implements ClockInterface
+readonly class ClockTestingManifest implements IteratorAggregate
 {
     #[NoDiscard]
     #[Override]
-    public function now(): DateTimeImmutable
+    public function getIterator(): Traversable
     {
-        return new DateTimeImmutable('now', new DateTimeZone('UTC'));
+        $clock = new FixedClock();
+
+        yield FixedClock::class => $clock;
+
+        yield ClockInterface::class => $clock;
     }
 }

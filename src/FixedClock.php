@@ -16,27 +16,24 @@ declare(strict_types=1);
 namespace TomasChochola\Psr\Clock;
 
 use DateTimeImmutable;
+use DateTimeZone;
+use NoDiscard;
 use Override;
 use Psr\Clock\ClockInterface;
-use Psr\Container\ContainerInterface;
 
 /**
  * @no-named-arguments
  */
 readonly class FixedClock implements ClockInterface
 {
-    protected readonly DateTimeImmutable $now;
+    private readonly DateTimeImmutable $now;
 
-    public function __construct(DateTimeImmutable $now = new DateTimeImmutable('2000-01-01T00:00:00Z'))
+    public function __construct(DateTimeImmutable $now = new DateTimeImmutable('2000-01-01T00:00:00', new DateTimeZone('UTC')))
     {
         $this->now = $now;
     }
 
-    public static function unload(ContainerInterface $container): self
-    {
-        return new self();
-    }
-
+    #[NoDiscard]
     #[Override]
     public function now(): DateTimeImmutable
     {

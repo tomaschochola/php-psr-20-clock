@@ -15,21 +15,17 @@ declare(strict_types=1);
 
 namespace TomasChochola\Psr\Clock;
 
-use DateTimeImmutable;
-use DateTimeZone;
 use NoDiscard;
-use Override;
-use Psr\Clock\ClockInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * @no-named-arguments
  */
-readonly class NowClock implements ClockInterface
+readonly class NowClockAssembler
 {
     #[NoDiscard]
-    #[Override]
-    public function now(): DateTimeImmutable
+    public static function assemble(ContainerInterface $container): NowClock
     {
-        return new DateTimeImmutable('now', new DateTimeZone('UTC'));
+        return new NowClock();
     }
 }
