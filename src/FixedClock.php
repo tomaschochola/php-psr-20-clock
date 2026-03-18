@@ -27,17 +27,17 @@ use Psr\Container\ContainerInterface;
  */
 readonly class FixedClock implements ClockInterface
 {
-    #[NoDiscard]
-    public static function inject(ContainerInterface $container): self
-    {
-        return new self();
-    }
-
     private readonly DateTimeImmutable $now;
 
     public function __construct(DateTimeImmutable $now = new DateTimeImmutable('2000-01-01T00:00:00', new DateTimeZone('UTC')))
     {
         $this->now = $now;
+    }
+
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        return new self();
     }
 
     #[NoDiscard]
