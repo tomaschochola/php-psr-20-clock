@@ -20,12 +20,19 @@ use DateTimeZone;
 use NoDiscard;
 use Override;
 use Psr\Clock\ClockInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * @no-named-arguments
  */
 readonly class FixedClock implements ClockInterface
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        return new self();
+    }
+
     private readonly DateTimeImmutable $now;
 
     public function __construct(DateTimeImmutable $now = new DateTimeImmutable('2000-01-01T00:00:00', new DateTimeZone('UTC')))

@@ -20,12 +20,19 @@ use DateTimeZone;
 use NoDiscard;
 use Override;
 use Psr\Clock\ClockInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * @no-named-arguments
  */
 readonly class NowClock implements ClockInterface
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        return new self();
+    }
+
     #[NoDiscard]
     #[Override]
     public function now(): DateTimeImmutable
