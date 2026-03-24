@@ -60,8 +60,7 @@
   ],
   "require": {
     "php": "^8.5.0",
-    "psr/clock": "^1.0",
-    "psr/container": "^2.0"
+    "psr/clock": "^1.0"
   },
   "require-dev": {
     "ext-intl": "*",
