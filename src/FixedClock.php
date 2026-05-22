@@ -26,15 +26,15 @@ use Psr\Clock\ClockInterface;
  */
 readonly class FixedClock implements ClockInterface
 {
-    private readonly DateTimeImmutable $now;
+    private DateTimeImmutable $now;
 
     public function __construct(DateTimeImmutable $now = new DateTimeImmutable('2000-01-01T00:00:00', new DateTimeZone('UTC')))
     {
         $this->now = $now;
     }
 
-    #[NoDiscard]
-    #[Override]
+    #[NoDiscard()]
+    #[Override()]
     public function now(): DateTimeImmutable
     {
         return $this->now;

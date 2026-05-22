@@ -26,8 +26,8 @@ use Psr\Clock\ClockInterface;
  */
 readonly class NowClock implements ClockInterface
 {
-    #[NoDiscard]
-    #[Override]
+    #[NoDiscard()]
+    #[Override()]
     public function now(): DateTimeImmutable
     {
         return new DateTimeImmutable('now', new DateTimeZone('UTC'));
