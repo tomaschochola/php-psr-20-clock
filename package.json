@@ -31,9 +31,7 @@
         "TomasChochola",
         "Tomas Chochola",
         "Tomáš Chochola",
-        "clock",
-        "psr-20",
-        "time"
+        "php-psr-20-clock"
     ],
     "license": "CC-BY-ND-4.0",
     "name": "@tomaschochola/php-psr-20-clock",
